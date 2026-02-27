@@ -1,0 +1,19 @@
+:root {
+  --base-font: "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--base-font);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}

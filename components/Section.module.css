@@ -1,0 +1,29 @@
+.section,
+.sectionAlt {
+  padding: clamp(4rem, 8vw, 7rem) 1.2rem;
+}
+
+.section {
+  background: #f6f6f3;
+}
+
+.sectionAlt {
+  background: #efefe9;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  letter-spacing: 0.03em;
+}
+
+.text {
+  margin: 0;
+  max-width: 760px;
+  font-size: 1.05rem;
+}

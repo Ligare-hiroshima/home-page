@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ligare Corporate</title>
+    <meta
+      name="description"
+      content="Ligareのコーポレートサイト。価値を伝える、未来をつくる。"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="page-background" aria-hidden="true"></div>
+    <div class="page-overlay" aria-hidden="true"></div>
+
+    <div class="page-shell">
+      <nav class="site-menu" aria-label="メインメニュー">
+        <a class="site-brand" href="#hero">
+          <img src="/ligare_transparent.png" alt="Ligare" />
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu-links">
+          Menu
+        </button>
+        <div class="site-menu-links" id="site-menu-links">
+          <a href="#activity">Activity</a>
+          <a href="#about">About</a>
+          <a href="#service">Service</a>
+          <a href="#works">Works</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <header
+        class="hero"
+        id="hero"
+        style="--hero-bg-image: url('./09_現在の東広島キャンパス.jpg')"
+      >
+        <div class="hero-content">
+          <p class="hero-lead">価値を伝える、未来をつくる。</p>
+          <h1>〜人・サービス・経験をリガーレする〜</h1>
+          <p>
+            デザインとテクノロジーで、企業とユーザーをつなぐ体験を提供します。
+          </p>
+        </div>
+      </header>
+
+      <main>
+
+        <section class="section alt" id="activity">
+          <div class="container">
+            <h2>Activity</h2>
+            <ul class="activity-list">
+              <li>
+                <img src="/IMG_6555.JPG" alt="地域清掃ボランティアの様子" loading="lazy" />
+                <div class="activity-content">
+                  <time datetime="2026-02-20">2026.02.20</time>
+                  <h3>LTS賞を受賞しました</h3>
+                  <p>この度リガーレは広島スタートアップチャレンジにてLTS賞を受賞</p>
+                </div>
+              </li>
+              <li>
+                <img src="/S__9510915.jpg" alt="フードドライブ連携プロジェクトの様子" loading="lazy" />
+                <div class="activity-content">
+                  <time datetime="2026-01-30">2026.01.30</time>
+                  <h3>JA全農広島とコラボ企画</h3>
+                  <p>JA全農広島✖️リガーレで農業マッチングのコラボをしました</p>
+                </div>
+              </li>
+              <li>
+                <img src="./09_現在の東広島キャンパス.jpg" alt="DX勉強会の様子" loading="lazy" />
+                <div class="activity-content">
+                  <time datetime="2025-12-14">2025.12.14</time>
+                  <h3>DX勉強会を社内外向けに開催</h3>
+                  <p>業務改善の事例共有を通して、実務に活かせるDXの考え方を発信しました。</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section alt" id="service">
+          <div class="container">
+            <h2>Service</h2>
+            <div class="card-grid">
+              <article class="card">
+                <h3>DX業務</h3>
+                <p>業務課題の整理からデジタル導入・運用改善まで、現場に根づくDXを支援します。</p>
+                <a class="card-link" href="#works">実績を見る</a>
+              </article>
+              <article class="card">
+                <h3>フードロス事業</h3>
+                <p>自社アプリを利用し廃棄物に価値を生み出します。</p>
+                <a class="card-link" href="#works">実績を見る</a>
+              </article>
+              <article class="card">
+                <h3>共創事業</h3>
+                <p>広島大学生の学生と広島の企業を結び地域活性化をします。</p>
+                <a class="card-link" href="#works">実績を見る</a>
+              </article>
+            </div>
+          </div>
+        </section>
+
+              <section class="section alt" id="works">
+          <div class="container">
+            <h2>Works</h2>
+            <div class="works-group">
+              <h3 class="works-group-title">DX業務</h3>
+              <div class="works-carousel" data-works-carousel>
+                <div class="works-grid">
+                  <article class="work-card">
+                    <img src="/IMG_6556.JPG" alt="DX業務実績のイメージ" loading="lazy" />
+                    <div class="work-card-body">
+                      <h4>業務管理ダッシュボード導入</h4>
+                      <p>社内データを一元化し、日次の集計作業を短縮。現場判断のスピード向上に貢献しました。</p>
+                    </div>
+                  </article>
+                  <article class="work-card">
+                    <img src="/09_現在の東広島キャンパス.jpg" alt="DX業務改善プロジェクトのイメージ" loading="lazy" />
+                    <div class="work-card-body">
+                      <h4>業務フローのデジタル化支援</h4>
+                      <p>紙運用を見直し、申請から承認までをオンライン化。運用負荷とミスの削減を実現しました。</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="works-controls">
+                  <button class="works-nav prev" type="button" aria-label="前の実績を見る">‹</button>
+                  <div class="works-dots" aria-hidden="true"></div>
+                  <button class="works-nav next" type="button" aria-label="次の実績を見る">›</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="works-group">
+              <h3 class="works-group-title">フードロス事業</h3>
+              <div class="works-carousel" data-works-carousel>
+                <div class="works-grid">
+                  <article class="work-card">
+                    <img src="/S__9510915.jpg" alt="フードロス事業実績のイメージ" loading="lazy" />
+                    <div class="work-card-body">
+                      <h4>地域フードドライブ企画</h4>
+                      <p>地域団体と連携し、余剰食品の回収導線を整備。継続運用できる仕組みづくりを支援しました。</p>
+                    </div>
+                  </article>
+                  <article class="work-card">
+                    <img src="/IMG_6555.JPG" alt="余剰食品活用プロジェクトのイメージ" loading="lazy" />
+                    <div class="work-card-body">
+                      <h4>再配布オペレーション設計</h4>
+                      <p>食品受け渡しの流れを最適化し、寄付先へのスムーズな配送体制を構築しました。</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="works-controls">
+                  <button class="works-nav prev" type="button" aria-label="前の実績を見る">‹</button>
+                  <div class="works-dots" aria-hidden="true"></div>
+                  <button class="works-nav next" type="button" aria-label="次の実績を見る">›</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="works-group">
+              <h3 class="works-group-title">共創事業</h3>
+              <div class="works-carousel" data-works-carousel>
+                <div class="works-grid">
+                  <article class="work-card">
+                    <img src="/IMG_6556.JPG" alt="人材派遣実績のイメージ" loading="lazy" />
+                    <div class="work-card-body">
+                      <h4>短期プロジェクト人材アサイン</h4>
+                      <p>必要スキルを持つ人材を短期間で配置し、立ち上げフェーズの遅延リスクを抑制しました。</p>
+                    </div>
+                  </article>
+                  <article class="work-card">
+                    <img src="/09_現在の東広島キャンパス.jpg" alt="人材派遣支援のイメージ" loading="lazy" />
+                    <div class="work-card-body">
+                      <h4>運用チーム体制の再構築</h4>
+                      <p>派遣と既存メンバーの連携設計を行い、現場の引き継ぎ負担を軽減して安定稼働につなげました。</p>
+                    </div>
+                  </article>
+                </div>
+                <div class="works-controls">
+                  <button class="works-nav prev" type="button" aria-label="前の実績を見る">‹</button>
+                  <div class="works-dots" aria-hidden="true"></div>
+                  <button class="works-nav next" type="button" aria-label="次の実績を見る">›</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section alt" id="member">
+          <div class="container">
+            <h2>Member</h2>
+            <div class="member-grid">
+              <article class="member-card" tabindex="0">
+                <div class="member-card-inner">
+                  <div class="member-face member-front">
+                    <img class="member-photo" src="/IMG_6555.JPG" alt="前野こうたの顔写真" loading="lazy" />
+                    <p class="member-role">CEO</p>
+                    <h3>前野こうた</h3>
+                    <p>事業戦略と営業統括を担当。地域と企業をつなぐ新しい価値づくりを推進しています。</p>
+                    <button class="member-toggle" type="button">オフの一面を見る</button>
+                  </div>
+                  <div class="member-face member-back">
+                    <p class="member-role">Off</p>
+                    <h3>前野こうた</h3>
+                    <p>休日はカフェ巡りとランニング。アイデアを整理しながら次の企画を考える時間を大切にしています。</p>
+                    <button class="member-toggle" type="button">ビジネススキルを見る</button>
+                  </div>
+                </div>
+              </article>
+              <article class="member-card" tabindex="0">
+                <div class="member-card-inner">
+                  <div class="member-face member-front">
+                    <img class="member-photo" src="/09_現在の東広島キャンパス.jpg" alt="本庄こうたの顔写真" loading="lazy" />
+                    <p class="member-role">Project Manager</p>
+                    <h3>本庄こうた</h3>
+                    <p>DX案件の進行管理を担当。課題整理から運用定着まで、現場目線で伴走します。</p>
+                    <button class="member-toggle" type="button">オフの一面を見る</button>
+                  </div>
+                  <div class="member-face member-back">
+                    <p class="member-role">Off</p>
+                    <h3>本庄こうた</h3>
+                    <p>オフの日はサウナと読書でリフレッシュ。新しい業務改善のヒントを集めるのが習慣です。</p>
+                    <button class="member-toggle" type="button">ビジネススキルを見る</button>
+                  </div>
+                </div>
+              </article>
+              <article class="member-card" tabindex="0">
+                <div class="member-card-inner">
+                  <div class="member-face member-front">
+                    <img class="member-photo" src="/S__9510915.jpg" alt="水野光世の顔写真" loading="lazy" />
+                    <p class="member-role">Creative Director</p>
+                    <h3>水野光世</h3>
+                    <p>ブランド設計とデザインを担当。伝わる表現と使いやすさを両立した体験を設計します。</p>
+                    <button class="member-toggle" type="button">オフの一面を見る</button>
+                  </div>
+                  <div class="member-face member-back">
+                    <p class="member-role">Off</p>
+                    <h3>水野光世</h3>
+                    <p>写真撮影とアート鑑賞が趣味。街歩きの中で見つけた色や形を、クリエイティブに活かしています。</p>
+                    <button class="member-toggle" type="button">ビジネススキルを見る</button>
+                  </div>
+                </div>
+              </article>
+              <article class="member-card" tabindex="0">
+                <div class="member-card-inner">
+                  <div class="member-face member-front">
+                    <img class="member-photo" src="/S__9510915.jpg" alt="池田龍之介の顔写真" loading="lazy" />
+                    <p class="member-role">Creative Director</p>
+                    <h3>池田龍之介</h3>
+                    <p>ブランド設計とデザインを担当。伝わる表現と使いやすさを両立した体験を設計します。</p>
+                    <button class="member-toggle" type="button">オフの一面を見る</button>
+                  </div>
+                  <div class="member-face member-back">
+                    <p class="member-role">Off</p>
+                    <h3>池田龍之介</h3>
+                    <p>休日は料理とアウトドア。手を動かして試すことを楽しみながら、発想の幅を広げています。</p>
+                    <button class="member-toggle" type="button">ビジネススキルを見る</button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="section alt" id="contact">
+          <div class="container">
+            <h2>Contact</h2>
+            <p class="text">ご相談・お見積りは下記メールまでお気軽にご連絡ください。</p>
+            <a class="contact-link" href="mailto:info@example.com">info@example.com</a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <small>© 2026 Ligare Inc. All rights reserved.</small>
+      </footer>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
