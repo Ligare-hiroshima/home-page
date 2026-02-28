@@ -32,7 +32,7 @@ body {
 .page-background {
   z-index: -3;
   background-color: #ffffff;
-  background-image: url("/ligere.png");
+  background-image: url("./asetts/li.png");
   background-repeat: no-repeat;
   background-position: center 16vh;
   background-size: min(72vw, 880px);
@@ -40,7 +40,7 @@ body {
 
 .page-overlay {
   z-index: -2;
-  background: rgba(255, 254, 254, 0.89);
+  background: rgba(255, 254, 254, 0.85);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
 }
