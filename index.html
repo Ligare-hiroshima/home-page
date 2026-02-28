@@ -34,14 +34,15 @@
       <header
         class="hero"
         id="hero"
-        style="--hero-bg-image: url('asetts/a.jpg')"
+        style="--hero-bg-image: url('./asetts/ch.png')"
       >
         <div class="hero-content">
-          <p class="hero-lead">価値を伝える、未来をつくる。</p>
-          <h1>〜人・サービス・経験をリガーレする〜</h1>
-          <p>
-            デザインとテクノロジーで、企業とユーザーをつなぐ体験を提供します。
-          </p>
+          <div class="hero-message" aria-label="Ligareのビジョンメッセージ">
+            <h1 class="hero-line">~<span class="hero-word-accent">人</span>を繋ぐ~</h1>
+            <h1 class="hero-line">~<span class="hero-word-accent">サービス</span>を繋ぐ~</h1>
+            <h1 class="hero-line">~<span class="hero-word-accent">経験</span>を繋ぐ~</h1>
+            <h1 class="hero-line">~<span class="hero-word-accent">幸せ</span>を繋ぐ~</h1>
+          </div>
         </div>
       </header>
 
@@ -50,32 +51,39 @@
         <section class="section alt" id="activity">
           <div class="container">
             <h2>Activity</h2>
-            <ul class="activity-list">
-              <li>
-                <img src="./asetts/sh.JPG" alt="地域清掃ボランティアの様子" loading="lazy" />
-                <div class="activity-content">
-                  <time datetime="2026-02-20">2026.02.20</time>
-                  <h3>LTS賞を受賞しました</h3>
-                  <p>この度リガーレは広島スタートアップチャレンジにてLTS賞を受賞</p>
-                </div>
-              </li>
-              <li>
-                <img src="./asetts/ja.jpg" alt="フードドライブ連携プロジェクトの様子" loading="lazy" />
-                <div class="activity-content">
-                  <time datetime="2026-01-30">2026.01.30</time>
-                  <h3>JA全農広島とコラボ企画</h3>
-                  <p>JA全農広島✖️リガーレで農業マッチングのコラボをしました</p>
-                </div>
-              </li>
-              <li>
-                <img src="./asetts/a.jpg" alt="DX勉強会の様子" loading="lazy" />
-                <div class="activity-content">
-                  <time datetime="2025-12-14">2025.12.14</time>
-                  <h3>DX勉強会を社内外向けに開催</h3>
-                  <p>業務改善の事例共有を通して、実務に活かせるDXの考え方を発信しました。</p>
-                </div>
-              </li>
-            </ul>
+            <div class="activity-carousel" data-activity-carousel>
+              <ul class="activity-list">
+                <li>
+                  <img src="./asetts/sh.JPG" alt="地域清掃ボランティアの様子" loading="lazy" />
+                  <div class="activity-content">
+                    <time datetime="2026-02-20">2026.02.20</time>
+                    <h3>LTS賞を受賞しました</h3>
+                    <p>この度リガーレは広島スタートアップチャレンジにてLTS賞を受賞</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="./asetts/ja.jpg" alt="フードドライブ連携プロジェクトの様子" loading="lazy" />
+                  <div class="activity-content">
+                    <time datetime="2026-01-30">2026.01.30</time>
+                    <h3>JA全農広島とコラボ企画</h3>
+                    <p>JA全農広島✖️リガーレで農業マッチングのコラボをしました</p>
+                  </div>
+                </li>
+                <li>
+                  <img src="./asetts/a.jpg" alt="DX勉強会の様子" loading="lazy" />
+                  <div class="activity-content">
+                    <time datetime="2025-12-14">2025.12.14</time>
+                    <h3>DX勉強会を社内外向けに開催</h3>
+                    <p>業務改善の事例共有を通して、実務に活かせるDXの考え方を発信しました。</p>
+                  </div>
+                </li>
+              </ul>
+              <div class="works-controls">
+                <button class="works-nav prev" type="button" aria-label="前の活動を見る">‹</button>
+                <div class="works-dots" aria-hidden="true"></div>
+                <button class="works-nav next" type="button" aria-label="次の活動を見る">›</button>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -85,17 +93,17 @@
             <div class="card-grid">
               <article class="card">
                 <h3>DX業務</h3>
-                <p>業務課題の整理からデジタル導入・運用改善まで、現場に根づくDXを支援します。</p>
+                <p>業務課題の整理からデジタル導入・運用改善まで、現場に根づくDXを支援。</p>
                 <a class="card-link" href="#works">実績を見る</a>
               </article>
               <article class="card">
                 <h3>フードロス事業</h3>
-                <p>自社アプリを利用し廃棄物に価値を生み出します。</p>
+                <p>自社アプリを利用し廃棄物に価値を創出し販売。</p>
                 <a class="card-link" href="#works">実績を見る</a>
               </article>
               <article class="card">
                 <h3>共創事業</h3>
-                <p>広島大学生の学生と広島の企業を結び地域活性化をします。</p>
+                <p>広島大学生の学生と広島の企業を結び地域活性化。</p>
                 <a class="card-link" href="#works">実績を見る</a>
               </article>
             </div>

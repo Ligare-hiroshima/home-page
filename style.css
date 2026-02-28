@@ -140,8 +140,8 @@ body {
 .hero {
   position: relative;
   width: 100%;
-  height: 100svh;
-  min-height: 100svh;
+  height: 85svh;
+  min-height: 85svh;
   padding: 2rem;
   display: flex;
   align-items: flex-end;
@@ -186,10 +186,71 @@ body {
   width: 100%;
   height: 100%;
   max-width: 100%;
-  padding: 3rem;
+  padding: 3rem 3rem 5rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+
+.hero-message {
+  display: grid;
+  gap: 0.45rem;
+  max-width: min(90vw, 760px);
+}
+
+.hero-line {
+  margin: 0;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroLineIn 0.65s ease forwards;
+}
+
+.hero-word-accent {
+  color: #8fcdf0;
+  font-size: 1.22em;
+  font-weight: 800;
+}
+
+.hero-line:nth-child(1) {
+  animation-delay: 0.15s;
+}
+
+.hero-line:nth-child(2) {
+  animation-delay: 0.55s;
+}
+
+.hero-line:nth-child(3) {
+  animation-delay: 0.95s;
+}
+
+.hero-line:nth-child(4) {
+  animation-delay: 1.35s;
+}
+
+.hero-line:nth-child(5) {
+  animation-delay: 1.8s;
+}
+
+.hero-line-final {
+  margin-top: 0.45rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.7rem);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+@keyframes heroLineIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-lead {
@@ -228,6 +289,19 @@ h2 {
   margin: 0 0 1.5rem;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   letter-spacing: 0.03em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+h2::before,
+h2::after {
+  content: "〜";
+  font-size: 0.8em;
+  color: #000000;
+  opacity: 0.9;
 }
 
 .text {
@@ -394,7 +468,7 @@ h2 {
 }
 
 .member-card p {
-  margin: 0.7rem 0 0;
+  margin: 20px 0 0;
 }
 
 .member-toggle {
@@ -469,6 +543,10 @@ h2 {
 
 .activity-list p {
   margin: 0.35rem 0 0;
+}
+
+.activity-carousel {
+  position: relative;
 }
 
 .works-group + .works-group {
@@ -645,11 +723,47 @@ h2 {
 
   .hero {
     padding: 1rem;
-    min-height: 92svh;
+    height: 70svh;
+    min-height: 70svh;
+    background-position: center 30%;
   }
 
+  .hero h1 {
+  font-size: clamp(0.7rem, 4.5vw, 2.1rem);
+  line-height: 1.2;
+}
+
+
   .hero-content {
-    padding: 1.5rem;
+    padding: 1rem 1rem 5rem;
+  }
+
+  .hero-message {
+    gap: 0.3rem;
+  }
+
+  .hero-line {
+    font-size: clamp(1.05rem, 6vw, 1.6rem);
+    line-height: 1.3;
+  }
+
+  .hero-word-accent {
+    font-size: calc(1.22em + 10px);
+  }
+
+  .hero-line-final {
+    margin-top: 0.35rem;
+    font-size: clamp(0.95rem, 4.6vw, 1.25rem);
+  }
+
+  h2 {
+    gap: 0.38rem;
+    font-size: clamp(1.55rem, 6.2vw, 2rem);
+  }
+
+  h2::before,
+  h2::after {
+    font-size: 0.72em;
   }
 
   .news-list li {
@@ -658,10 +772,25 @@ h2 {
   }
 
   .activity-list li {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
     grid-template-columns: 1fr;
     gap: 0.8rem;
     padding: 1rem;
     align-items: start;
+  }
+
+  .activity-list {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    will-change: transform;
+    transition: transform 0.35s ease;
+  }
+
+  .activity-carousel {
+    overflow: hidden;
   }
 
   .activity-list img {
@@ -707,6 +836,10 @@ h2 {
     display: flex;
   }
 
+  .activity-carousel .works-controls {
+    display: flex;
+  }
+
   .card-grid {
     grid-template-columns: 1fr;
   }
@@ -717,7 +850,7 @@ h2 {
 
   .member-card,
   .member-card-inner {
-    min-height: 440px;
+    min-height: 550px;
   }
 
   .logo-layer {

@@ -46,53 +46,125 @@ memberCards.forEach((card) => {
   });
 });
 
-const worksCarousels = document.querySelectorAll("[data-works-carousel]");
-worksCarousels.forEach((carousel) => {
-  if (!(carousel instanceof HTMLElement)) return;
+const initCarousel = ({
+  rootSelector,
+  trackSelector,
+  slideSelector,
+  prevSelector,
+  nextSelector,
+  dotsSelector,
+  dotClassName,
+  autoAdvanceMs = 0,
+  enabledMediaQuery = "",
+  stepByViewport = false,
+  loop = false,
+}) => {
+  const carousels = document.querySelectorAll(rootSelector);
+  carousels.forEach((carousel) => {
+    if (!(carousel instanceof HTMLElement)) return;
 
-  const track = carousel.querySelector(".works-grid");
-  const slides = carousel.querySelectorAll(".work-card");
-  const prevBtn = carousel.querySelector(".works-nav.prev");
-  const nextBtn = carousel.querySelector(".works-nav.next");
-  const dotsRoot = carousel.querySelector(".works-dots");
+    const track = carousel.querySelector(trackSelector);
+    const slides = carousel.querySelectorAll(slideSelector);
+    const prevBtn = carousel.querySelector(prevSelector);
+    const nextBtn = carousel.querySelector(nextSelector);
+    const dotsRoot = carousel.querySelector(dotsSelector);
 
-  if (
-    !(track instanceof HTMLElement) ||
-    !(prevBtn instanceof HTMLButtonElement) ||
-    !(nextBtn instanceof HTMLButtonElement) ||
-    !(dotsRoot instanceof HTMLElement) ||
-    slides.length === 0
-  ) {
-    return;
-  }
+    if (
+      !(track instanceof HTMLElement) ||
+      !(prevBtn instanceof HTMLButtonElement) ||
+      !(nextBtn instanceof HTMLButtonElement) ||
+      !(dotsRoot instanceof HTMLElement) ||
+      slides.length === 0
+    ) {
+      return;
+    }
 
-  let index = 0;
-  const dots = Array.from(slides, (_, dotIndex) => {
-    const dot = document.createElement("span");
-    dot.className = "works-dot";
-    if (dotIndex === 0) dot.classList.add("is-active");
-    dotsRoot.appendChild(dot);
-    return dot;
-  });
-
-  const sync = () => {
-    track.style.transform = `translateX(-${index * 100}%)`;
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === slides.length - 1;
-    dots.forEach((dot, dotIndex) => {
-      dot.classList.toggle("is-active", dotIndex === index);
+    let index = 0;
+    const mediaQuery =
+      enabledMediaQuery.length > 0 ? window.matchMedia(enabledMediaQuery) : null;
+    const isEnabled = () => (mediaQuery ? mediaQuery.matches : true);
+    const dots = Array.from(slides, (_, dotIndex) => {
+      const dot = document.createElement("span");
+      dot.className = dotClassName;
+      if (dotIndex === 0) dot.classList.add("is-active");
+      dotsRoot.appendChild(dot);
+      return dot;
     });
-  };
 
-  prevBtn.addEventListener("click", () => {
-    index = Math.max(0, index - 1);
+    const sync = () => {
+      if (!isEnabled()) {
+        track.style.transform = "translateX(0)";
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle("is-active", dotIndex === 0);
+        });
+        return;
+      }
+
+      const currentSlide = slides[index];
+      const offset = stepByViewport
+        ? index * carousel.clientWidth
+        : currentSlide instanceof HTMLElement
+          ? currentSlide.offsetLeft
+          : 0;
+      track.style.transform = `translateX(-${offset}px)`;
+      prevBtn.disabled = !loop && index === 0;
+      nextBtn.disabled = !loop && index === slides.length - 1;
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle("is-active", dotIndex === index);
+      });
+    };
+
+    prevBtn.addEventListener("click", () => {
+      if (!isEnabled()) return;
+      index = loop
+        ? (index - 1 + slides.length) % slides.length
+        : Math.max(0, index - 1);
+      sync();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (!isEnabled()) return;
+      index = loop
+        ? (index + 1) % slides.length
+        : Math.min(slides.length - 1, index + 1);
+      sync();
+    });
+
+    if (autoAdvanceMs > 0) {
+      window.setInterval(() => {
+        if (!isEnabled()) return;
+        index = loop ? (index + 1) % slides.length : Math.min(slides.length - 1, index + 1);
+        sync();
+      }, autoAdvanceMs);
+    }
+
+    window.addEventListener("resize", sync);
     sync();
   });
+};
 
-  nextBtn.addEventListener("click", () => {
-    index = Math.min(slides.length - 1, index + 1);
-    sync();
-  });
+initCarousel({
+  rootSelector: "[data-works-carousel]",
+  trackSelector: ".works-grid",
+  slideSelector: ".work-card",
+  prevSelector: ".works-nav.prev",
+  nextSelector: ".works-nav.next",
+  dotsSelector: ".works-dots",
+  dotClassName: "works-dot",
+});
 
-  sync();
+initCarousel({
+  rootSelector: "[data-activity-carousel]",
+  trackSelector: ".activity-list",
+  slideSelector: ".activity-list li",
+  prevSelector: ".works-nav.prev",
+  nextSelector: ".works-nav.next",
+  dotsSelector: ".works-dots",
+  dotClassName: "works-dot",
+  autoAdvanceMs: 1000,
+  enabledMediaQuery: "(max-width: 900px)",
+  stepByViewport: true,
+  loop: true,
 });
