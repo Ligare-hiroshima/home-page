@@ -34,7 +34,7 @@ body {
   background-color: #ffffff;
   background-image: url("./asetts/li.png");
   background-repeat: no-repeat;
-  background-position: center 16vh;
+  background-position: center 15vh;
   background-size: min(72vw, 880px);
 }
 
@@ -43,6 +43,13 @@ body {
   background: rgba(255, 254, 254, 0.85);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
+  transition: background-color 0.45s ease, backdrop-filter 0.45s ease;
+}
+
+body.is-overlay-light .page-overlay {
+  background: rgba(255, 254, 254, 0.50);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
 }
 
 .page-shell {
@@ -663,19 +670,128 @@ h2::after {
 .contact-link {
   display: inline-block;
   margin-top: 0.8rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #a9c7e8;
+  background: rgba(255, 255, 255, 0.82);
   font-weight: 600;
   color: #1f3b58;
   text-decoration: none;
-  border-bottom: 1px solid currentColor;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.contact-link:hover {
+  background: #a9c7e8;
+  color: #16314b;
+}
+
+.form-page {
+  min-height: 100vh;
+}
+
+.form-section {
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #1f3b58;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.contact-form {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: 1.4rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  border: 2px solid transparent;
+  box-shadow: 0 8px 20px rgba(96, 95, 95, 0.08);
+}
+
+.form-section .container {
+  width: min(var(--container), calc(100% - 2.4rem));
+}
+
+.form-row {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.form-row + .form-row {
+  margin-top: 1rem;
+}
+
+.form-row span {
+  font-weight: 600;
+  color: #1e2f45;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  width: 100%;
+  border: 1px solid #c5d8ed;
+  border-radius: 0.6rem;
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+  color: #242424;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: 2px solid #9bc1e8;
+  outline-offset: 1px;
+}
+
+.form-submit {
+  margin-top: 1.2rem;
+  padding: 0.62rem 1.1rem;
+  border: 1px solid #a9c7e8;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1f3b58;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.form-submit:hover {
+  background: #a9c7e8;
+  color: #16314b;
+}
+
+.final-visual-zone {
+  width: min(var(--container), calc(100% - 2.4rem));
+  margin: 0 auto;
+  min-height: clamp(65vh, 65vh, 70vh);
+}
+
+.overlay-light-trigger {
+  width: 100%;
+  min-height: inherit;
 }
 
 .footer {
-  padding: 2.8rem 1.2rem 3rem;
+  padding: 5rem 1.2rem 5rem;
   text-align: center;
   background: rgba(230, 230, 223, 0.7);
 }
 
 @media (max-width: 900px) {
+  
   .site-menu {
     width: 100%;
     justify-content: space-between;
@@ -864,4 +980,41 @@ h2::after {
   .logo-layer img {
     width: clamp(94px, 28vw, 128px);
   }
+
+  #contact {
+    padding: 2.2rem 1.2rem 10rem;
+  }
+
+  #contact h2 {
+    margin-bottom: 0.9rem;
+  }
+
+  #contact .contact-link {
+    margin-top: 0.45rem;
+  }
+
+  .contact-form {
+    padding: 1rem;
+  }
+
+  #contact + .final-visual-zone {
+    margin-top: 0;
+  }
+
+
+  .final-visual-zone {
+    display: none;
+  }
+
+
+  .footer {
+    padding: 1.4rem 1.2rem 1.6rem;
+    text-align: center;
+    background: rgba(230, 230, 223, 0.7);
+  }
+
+    .page-background {
+    background-position: center 45vh;
+  }
+
 }

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form | Ligare</title>
+    <meta
+      name="description"
+      content="Ligareへのご相談・お見積りフォームです。必要事項をご入力のうえ送信してください。"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="page-background" aria-hidden="true"></div>
+    <div class="page-overlay" aria-hidden="true"></div>
+
+    <div class="page-shell form-page">
+      <nav class="site-menu" aria-label="メインメニュー">
+        <a class="site-brand" href="./index.html#hero">
+          <img src="./asetts/lt.png" alt="Ligare" />
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu-links">
+          Menu
+        </button>
+        <div class="site-menu-links" id="site-menu-links">
+          <a href="./index.html#activity">Activity</a>
+          <a href="./index.html#service">Service</a>
+          <a href="./index.html#works">Works</a>
+          <a href="./index.html#member">Member</a>
+          <a href="./index.html#contact">Contact</a>
+        </div>
+      </nav>
+
+      <main>
+        <section class="section alt form-section">
+          <div class="container">
+            <a class="back-link" href="./index.html#contact">← Contactへ戻る</a>
+            <h2>送信フォーム</h2>
+            <form class="contact-form" action="#" method="post">
+              <label class="form-row">
+                <span>会社名</span>
+                <input type="text" name="company" autocomplete="organization" />
+              </label>
+
+              <label class="form-row">
+                <span>名前</span>
+                <input type="text" name="name" autocomplete="name" required />
+              </label>
+
+              <label class="form-row">
+                <span>メールアドレス</span>
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+
+              <label class="form-row">
+                <span>相談内容</span>
+                <select name="topic" required>
+                  <option value="" selected disabled>選択してください</option>
+                  <option value="dx">DX業務について</option>
+                  <option value="food-loss">フードロスについて</option>
+                  <option value="website">ホームページ作成について</option>
+                  <option value="co-creation">共創事業について</option>
+                  <option value="other">その他</option>
+                </select>
+              </label>
+
+              <label class="form-row">
+                <span>メッセージ本文</span>
+                <textarea name="message" rows="6" required></textarea>
+              </label>
+
+              <button class="form-submit" type="submit">送信する</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

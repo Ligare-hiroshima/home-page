@@ -37,6 +37,35 @@ if (
   });
 }
 
+const overlayLightZone = document.querySelector("[data-overlay-trigger]");
+const memberSection = document.querySelector("#member");
+if (overlayLightZone instanceof HTMLElement) {
+  const setOverlayState = (isLight) => {
+    document.body.classList.toggle("is-overlay-light", isLight);
+  };
+  const desktopQuery = window.matchMedia("(min-width: 901px)");
+  const syncOverlayState = () => {
+    if (!desktopQuery.matches) {
+      setOverlayState(false);
+      return;
+    }
+    const triggerLine = (siteMenu instanceof HTMLElement ? siteMenu.offsetHeight : 0) + 8;
+    const isInFinalZone = memberSection instanceof HTMLElement
+      ? memberSection.getBoundingClientRect().bottom <= triggerLine
+      : overlayLightZone.getBoundingClientRect().top <= triggerLine;
+    setOverlayState(isInFinalZone);
+  };
+  window.addEventListener("scroll", syncOverlayState, { passive: true });
+  window.addEventListener("resize", syncOverlayState);
+  window.addEventListener("orientationchange", syncOverlayState);
+  if (menuToggle instanceof HTMLButtonElement) {
+    menuToggle.addEventListener("click", () => {
+      window.requestAnimationFrame(syncOverlayState);
+    });
+  }
+  syncOverlayState();
+}
+
 const memberCards = document.querySelectorAll(".member-card");
 memberCards.forEach((card) => {
   if (!(card instanceof HTMLElement)) return;
