@@ -23,8 +23,8 @@
           Menu
         </button>
         <div class="site-menu-links" id="site-menu-links">
-          <a href="#activity">Activity</a>
-          <a href="#service">Service</a>
+          <a href="#activity">Activities</a>
+          <a href="#service">Services</a>
           <a href="#works">Works</a>
           <a href="#member">Member</a>
           <a href="#contact">Contact</a>
@@ -38,10 +38,13 @@
       >
         <div class="hero-content">
           <div class="hero-message" aria-label="Ligareのビジョンメッセージ">
-            <h1 class="hero-line">~<span class="hero-word-accent">人</span>を繋ぐ~</h1>
-            <h1 class="hero-line">~<span class="hero-word-accent">サービス</span>を繋ぐ~</h1>
-            <h1 class="hero-line">~<span class="hero-word-accent">経験</span>を繋ぐ~</h1>
-            <h1 class="hero-line">~<span class="hero-word-accent">幸せ</span>を繋ぐ~</h1>
+            <p class="hero-line" aria-hidden="true">
+              <span class="hero-word">人</span>
+              <span class="hero-word">サービス</span>
+              <span class="hero-word">経験</span>
+              <span class="hero-word">幸せ</span>
+            </p>
+            <h1 class="hero-line-final">リガーレする</h1>
           </div>
         </div>
       </header>
@@ -50,7 +53,7 @@
 
         <section class="section alt" id="activity">
           <div class="container">
-            <h2>Activity</h2>
+            <h2>Activities</h2>
             <div class="activity-carousel" data-activity-carousel>
               <ul class="activity-list">
                 <li>
@@ -59,6 +62,7 @@
                     <time datetime="2026-02-20">2026.02.20</time>
                     <h3>LTS賞を受賞しました</h3>
                     <p>この度リガーレは広島スタートアップチャレンジにてLTS賞を受賞</p>
+                    <a class="activity-link" href="https://www.hiroshima-u.ac.jp/iagcc/news/95842">詳細を見る</a>
                   </div>
                 </li>
                 <li>
@@ -67,6 +71,7 @@
                     <time datetime="2026-01-30">2026.01.30</time>
                     <h3>JA全農広島とコラボ企画</h3>
                     <p>JA全農広島✖️リガーレで農業マッチングのコラボをしました</p>
+                    <button class="activity-link" type="button">詳細を見る</button>
                   </div>
                 </li>
                 <li>
@@ -75,6 +80,7 @@
                     <time datetime="2025-12-14">2025.12.14</time>
                     <h3>DX勉強会を社内外向けに開催</h3>
                     <p>業務改善の事例共有を通して、実務に活かせるDXの考え方を発信しました。</p>
+                    <button class="activity-link" type="button">詳細を見る</button>
                   </div>
                 </li>
               </ul>
@@ -89,22 +95,22 @@
 
         <section class="section alt" id="service">
           <div class="container">
-            <h2>Service</h2>
+            <h2>Services</h2>
             <div class="card-grid">
               <article class="card">
                 <h3>DX業務</h3>
                 <p>業務課題の整理からデジタル導入・運用改善まで、現場に根づくDXを支援。</p>
-                <a class="card-link" href="#works">実績を見る</a>
+                <a class="card-link" href="#works-dx">実績を見る</a>
               </article>
               <article class="card">
                 <h3>フードロス事業</h3>
                 <p>自社アプリを利用し廃棄物に価値を創出し販売。</p>
-                <a class="card-link" href="#works">実績を見る</a>
+                <a class="card-link" href="#works-foodloss">実績を見る</a>
               </article>
               <article class="card">
                 <h3>共創事業</h3>
                 <p>広島大学生の学生と広島の企業を結び地域活性化。</p>
-                <a class="card-link" href="#works">実績を見る</a>
+                <a class="card-link" href="#works-cocreation">実績を見る</a>
               </article>
             </div>
           </div>
@@ -113,7 +119,7 @@
               <section class="section alt" id="works">
           <div class="container">
             <h2>Works</h2>
-            <div class="works-group">
+            <div class="works-group" id="works-dx">
               <h3 class="works-group-title">DX業務</h3>
               <div class="works-carousel" data-works-carousel>
                 <div class="works-grid">
@@ -121,14 +127,32 @@
                     <img src="./asetts/sk.jpg" alt="DX業務実績のイメージ" loading="lazy" />
                     <div class="work-card-body">
                       <h4>駐車場可視化システム</h4>
-                      <p>ひろ大の駐車場の可視化をしました。</p>
+                      <p>
+                        <span class="work-point-line">
+                          <span class="work-point-label issue">課題：</span>
+                          空き状況が分からず、駐車場の利用効率が下がっていた
+                        </span>
+                        <span class="work-point-line">
+                          <span class="work-point-label solution">解決策：</span>
+                          リアルタイムの可視化システムを導入し、空き状況を即時確認できるようにした
+                        </span>
+                      </p>
                     </div>
                   </article>
                   <article class="work-card">
                     <img src="./asetts/fd.JPG" alt="DX業務改善プロジェクトのイメージ" loading="lazy" />
                     <div class="work-card-body">
                       <h4>フードロスアプリ</h4>
-                      <p>商品登録をするだけで廃棄物をなくすシステムを構築しました</p>
+                      <p>
+                        <span class="work-point-line">
+                          <span class="work-point-label issue">課題：</span>
+                          廃棄予定の食品情報が共有されず、フードロスが発生していた
+                        </span>
+                        <span class="work-point-line">
+                          <span class="work-point-label solution">解決策：</span>
+                          商品登録だけで出品できるアプリを構築し、余剰食品を迅速に販売できるようにした
+                        </span>
+                      </p>
                     </div>
                   </article>
                 </div>
@@ -140,7 +164,7 @@
               </div>
             </div>
 
-            <div class="works-group">
+            <div class="works-group" id="works-foodloss">
               <h3 class="works-group-title">フードロス事業</h3>
               <div class="works-carousel" data-works-carousel>
                 <div class="works-grid">
@@ -148,14 +172,34 @@
                     <img src="./asetts/fff.jpg" alt="フードロス事業実績のイメージ" loading="lazy" />
                     <div class="work-card-body">
                       <h4>ひろ大北一食堂にてフードロス</h4>
-                      <p>廃棄する物を価値あるものに変え自社LINE&自社アプリを通じて学生に届ける。排気量が前年度と比べ2分の1にすることに成功</p>
+                      <p>
+                        <span class="work-point-line">
+                          <span class="work-point-label issue">課題：</span>
+                          学食の余剰食品が廃棄され、コストと環境負荷が高くなっていた
+                        </span>
+                        <span class="work-point-line">
+                          <span class="work-point-label solution">解決策：</span>
+                          自社LINEとアプリで学生へ再販売し、廃棄量を前年度比で約2分の1に削減
+                        </span>
+                      </p>
+                      <a class="activity-link" href="https://www.hiroshima-u.ac.jp/iagcc/news/95842">詳細を見る</a>
+        
                     </div>
                   </article>
                   <article class="work-card">
                     <img src="/IMG_6555.JPG" alt="余剰食品活用プロジェクトのイメージ" loading="lazy" />
                     <div class="work-card-body">
                       <h4>再配布オペレーション設計</h4>
-                      <p>食品受け渡しの流れを最適化し、寄付先へのスムーズな配送体制を構築しました。</p>
+                      <p>
+                        <span class="work-point-line">
+                          <span class="work-point-label issue">課題：</span>
+                          食品の受け渡し工程が煩雑で、配送の遅延やロスが発生していた
+                        </span>
+                        <span class="work-point-line">
+                          <span class="work-point-label solution">解決策：</span>
+                          受け渡しフローを標準化し、寄付先へ安定して届ける配送体制を構築した
+                        </span>
+                      </p>
                     </div>
                   </article>
                 </div>
@@ -167,7 +211,7 @@
               </div>
             </div>
 
-            <div class="works-group">
+            <div class="works-group" id="works-cocreation">
               <h3 class="works-group-title">共創事業</h3>
               <div class="works-carousel" data-works-carousel>
                 <div class="works-grid">
@@ -175,14 +219,32 @@
                     <img src="./asetts/mr.JPG" alt="人材派遣実績のイメージ" loading="lazy" />
                     <div class="work-card-body">
                       <h4>JA全農広島✖️マルシェ</h4>
-                      <p>無事に完売することができました。</p>
+                      <p>
+                        <span class="work-point-line">
+                          <span class="work-point-label issue">課題：</span>
+                          販売機会の不足で、地域産品の認知と販路拡大が進みにくかった
+                        </span>
+                        <span class="work-point-line">
+                          <span class="work-point-label solution">解決策：</span>
+                          マルシェを企画運営し、学生と地域をつなぐ販売導線を作って完売を達成した
+                        </span>
+                      </p>
                     </div>
                   </article>
                   <article class="work-card">
                     <img src="./asetts/ja.jpg" alt="人材派遣支援のイメージ" loading="lazy" />
                     <div class="work-card-body">
                       <h4>みかん収穫のお手伝い</h4>
-                      <p>農業に興味がある学生とマッチングしみかんを大量に収穫</p>
+                      <p>
+                        <span class="work-point-line">
+                          <span class="work-point-label issue">課題：</span>
+                          収穫期の人手不足で、作業遅延と取りこぼしが発生していた
+                        </span>
+                        <span class="work-point-line">
+                          <span class="work-point-label solution">解決策：</span>
+                          農業に興味のある学生をマッチングし、収穫作業を短期間で集中対応した
+                        </span>
+                      </p>
                     </div>
                   </article>
                 </div>
@@ -203,14 +265,14 @@
               <article class="member-card" tabindex="0">
                 <div class="member-card-inner">
                   <div class="member-face member-front">
-                    <img class="member-photo" src="./asetts/sh.JPG" alt="前野こうたの顔写真" loading="lazy" />
+                    <img class="member-photo" src="./asetts/kouta-off.jpg" alt="前野こうたの顔写真" loading="lazy" />
                     <p class="member-role">CEO</p>
                     <h3>前野こうた</h3>
                     <p>事業戦略と営業統括を担当。地域と企業をつなぐ新しい価値づくりを推進しています。</p>
                     <button class="member-toggle" type="button">オフの一面を見る</button>
                   </div>
                   <div class="member-face member-back">
-                    <img class="member-photo" src="./asetts/off_kouta.jpg" alt="前野こうたの顔写真" loading="lazy" />
+                    <img class="member-photo" src="./asetts/kouta-on.jpg" alt="前野こうたの顔写真" loading="lazy" />
                     <p class="member-role">Off</p>
                     <h3>前野こうた</h3>
                     <p>休日はカフェ巡りとランニング。アイデアを整理しながら次の企画を考える時間を大切にしています。</p>
@@ -246,7 +308,7 @@
                     <button class="member-toggle" type="button">オフの一面を見る</button>
                   </div>
                   <div class="member-face member-back">
-                    <img class="member-photo" src="./asetts/kousei_off.jpg" alt="水野光世の顔写真" loading="lazy" />
+                    <img class="member-photo" src="./asetts/kousei-off.jpg" alt="水野光世の顔写真" loading="lazy" />
                     <p class="member-role">Off</p>
                     <h3>水野光世</h3>
                     <p>写真撮影とアート鑑賞が趣味。街歩きの中で見つけた色や形を、クリエイティブに活かしています。</p>
@@ -280,8 +342,41 @@
         <section class="section alt" id="contact">
           <div class="container">
             <h2>Contact</h2>
-            <p class="text">ご相談・お見積りは下記メールまでお気軽にご連絡ください。</p>
-            <a class="contact-link" href="./contact.html">問い合わせする</a>
+            <form class="contact-form" action="#" method="post">
+              <label class="form-row">
+                <span>会社名</span>
+                <input type="text" name="company" autocomplete="organization" />
+              </label>
+
+              <label class="form-row">
+                <span>名前</span>
+                <input type="text" name="name" autocomplete="name" required />
+              </label>
+
+              <label class="form-row">
+                <span>メールアドレス</span>
+                <input type="email" name="email" autocomplete="email" required />
+              </label>
+
+              <label class="form-row">
+                <span>相談内容</span>
+                <select name="topic" required>
+                  <option value="" selected disabled>選択してください</option>
+                  <option value="dx">DX業務について</option>
+                  <option value="food-loss">フードロスについて</option>
+                  <option value="website">ホームページ作成について</option>
+                  <option value="co-creation">共創事業について</option>
+                  <option value="other">その他</option>
+                </select>
+              </label>
+
+              <label class="form-row">
+                <span>メッセージ本文</span>
+                <textarea name="message" rows="6" required></textarea>
+              </label>
+
+              <button class="form-submit" type="submit">送信する</button>
+            </form>
           </div>
         </section>
 

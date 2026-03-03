@@ -75,6 +75,47 @@ memberCards.forEach((card) => {
   });
 });
 
+const scrollRevealTargets = document.querySelectorAll(
+  ".section h2, .section .text, .activity-list li, .card, .works-group, .member-card, .contact-link"
+);
+if (scrollRevealTargets.length > 0) {
+  scrollRevealTargets.forEach((element, index) => {
+    if (!(element instanceof HTMLElement)) return;
+    element.classList.add("scroll-reveal");
+    element.style.setProperty("--reveal-delay", `${Math.min(index * 45, 360)}ms`);
+  });
+
+  const showElement = (element) => {
+    element.classList.add("is-visible");
+  };
+
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          if (!(entry.target instanceof HTMLElement)) return;
+          showElement(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -12% 0px",
+        threshold: 0.15,
+      }
+    );
+
+    scrollRevealTargets.forEach((element) => {
+      if (element instanceof HTMLElement) revealObserver.observe(element);
+    });
+  } else {
+    scrollRevealTargets.forEach((element) => {
+      if (element instanceof HTMLElement) showElement(element);
+    });
+  }
+}
+
 const initCarousel = ({
   rootSelector,
   trackSelector,
@@ -192,7 +233,7 @@ initCarousel({
   nextSelector: ".works-nav.next",
   dotsSelector: ".works-dots",
   dotClassName: "works-dot",
-  autoAdvanceMs: 1000,
+  autoAdvanceMs: 5000,
   enabledMediaQuery: "(max-width: 900px)",
   stepByViewport: true,
   loop: true,
