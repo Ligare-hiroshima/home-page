@@ -75,6 +75,31 @@ memberCards.forEach((card) => {
   });
 });
 
+const setupClickableCards = (selector) => {
+  const cards = document.querySelectorAll(selector);
+  cards.forEach((card) => {
+    if (!(card instanceof HTMLElement)) return;
+
+    const href = card.getAttribute("data-href");
+    if (!href) return;
+
+    card.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target instanceof Element && target.closest("a, button")) return;
+      window.location.href = href;
+    });
+
+    card.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
+      event.preventDefault();
+      window.location.href = href;
+    });
+  });
+};
+
+setupClickableCards(".activity-list li[data-href]");
+setupClickableCards(".work-card[data-href]");
+
 // Initialize mural logo draw animation by computing path length once.
 const initHeroLogoDraw = () => {
   const logoWrap = document.querySelector(".hero-logo-draw");

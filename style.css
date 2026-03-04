@@ -266,7 +266,8 @@ body.is-overlay-light .page-overlay {
 
 /* Draw the mural logo with a 3s stroke-dash animation */
 .hero-logo-draw-path {
-  fill: none;
+  fill: url(#hero-logo-draw-grad);
+  fill-opacity: 0;
   stroke: url(#hero-logo-draw-grad);
   stroke-width: 6.5;
   stroke-linecap: round;
@@ -278,7 +279,9 @@ body.is-overlay-light .page-overlay {
 }
 
 .hero-logo-draw.is-ready .hero-logo-draw-path {
-  animation: heroLogoDraw 20s ease forwards;
+  animation:
+    heroLogoDraw 7s ease forwards,
+    heroLogoFill 0.7s ease forwards 2s;
 }
 
 .hero-connector-line {
@@ -371,6 +374,15 @@ body.is-overlay-light .page-overlay {
   }
 }
 
+@keyframes heroLogoFill {
+  from {
+    fill-opacity: 0;
+  }
+  to {
+    fill-opacity: 0.62;
+  }
+}
+
 .hero-lead {
   margin: 0 0 1rem;
   font-size: 0.95rem;
@@ -418,6 +430,7 @@ body.is-overlay-light .page-overlay {
   }
 
   .hero-logo-draw-path {
+    fill-opacity: 0.62;
     stroke-dasharray: none;
     stroke-dashoffset: 0;
     animation: none;
@@ -479,6 +492,28 @@ h2::after {
   font-size: 0.8em;
   color: #000000;
   opacity: 0.9;
+}
+
+.section h2 {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  margin: 0 auto 2rem;
+  padding-bottom: 0;
+  justify-content: center;
+}
+
+.section h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.22em;
+  transform: translateX(-50%);
+  width: min(220px, 56vw);
+  height: 11px;
+  border-radius: 999px;
+  background: #a9c7e8;
+  opacity: 1;
 }
 
 .text {
@@ -690,6 +725,16 @@ h2::after {
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.activity-list li[data-href] {
+  cursor: pointer;
+}
+
+.work-card[data-href] {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
 .activity-list li:hover,
 .activity-list li:focus-within {
   border-color: #a9c7e8;
@@ -703,6 +748,48 @@ h2::after {
   min-height: 150px;
   object-fit: cover;
   border-radius: 0.65rem;
+}
+
+.activity-media-link {
+  position: relative;
+  display: block;
+  border-radius: 0.65rem;
+  overflow: hidden;
+}
+
+.activity-media-link img {
+  display: block;
+  border-radius: 0;
+}
+
+.activity-media-link::before,
+.activity-media-link::after {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.activity-media-link::before {
+  content: "";
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.activity-media-link::after {
+  content: "詳細を見る";
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.activity-list li:hover .activity-media-link::before,
+.activity-list li:hover .activity-media-link::after,
+.activity-list li:focus-within .activity-media-link::before,
+.activity-list li:focus-within .activity-media-link::after {
+  opacity: 1;
 }
 
 .activity-content {
@@ -844,6 +931,50 @@ h2::after {
   height: 220px;
   object-fit: cover;
   border-radius: 0.6rem;
+}
+
+.work-card-media {
+  position: relative;
+  display: block;
+  border-radius: 0.6rem;
+  overflow: hidden;
+}
+
+.work-card-media img {
+  display: block;
+  border-radius: 0;
+}
+
+.work-card[data-href]::before,
+.work-card[data-href]::after {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.work-card[data-href]::before {
+  content: "";
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.work-card[data-href]::after {
+  content: "詳細を見る";
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.work-card[data-href]:hover::before,
+.work-card[data-href]:hover::after,
+.work-card[data-href]:focus-within::before,
+.work-card[data-href]:focus-within::after {
+  opacity: 1;
 }
 
 .work-card-body {
