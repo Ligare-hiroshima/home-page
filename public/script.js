@@ -83,22 +83,34 @@ const setupClickableCards = (selector) => {
     const href = card.getAttribute("data-href");
     if (!href) return;
 
+    const navigate = () => {
+      if (href.startsWith("#")) {
+        const section = document.querySelector(href);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+          return;
+        }
+      }
+      window.location.href = href;
+    };
+
     card.addEventListener("click", (event) => {
       const target = event.target;
       if (target instanceof Element && target.closest("a, button")) return;
-      window.location.href = href;
+      navigate();
     });
 
     card.addEventListener("keydown", (event) => {
       if (event.key !== "Enter" && event.key !== " ") return;
       event.preventDefault();
-      window.location.href = href;
+      navigate();
     });
   });
 };
 
 setupClickableCards(".activity-list li[data-href]");
 setupClickableCards(".work-card[data-href]");
+setupClickableCards(".card[data-href]");
 
 // Initialize mural logo draw animation by computing path length once.
 const initHeroLogoDraw = () => {
@@ -282,4 +294,68 @@ initCarousel({
   enabledMediaQuery: "(max-width: 900px)",
   stepByViewport: true,
   loop: true,
+});
+
+const contactForms = document.querySelectorAll(".contact-form");
+contactForms.forEach((form) => {
+  if (!(form instanceof HTMLFormElement)) return;
+
+  const submitButton = form.querySelector(".form-submit");
+  if (!(submitButton instanceof HTMLButtonElement)) return;
+
+  const statusNode = document.createElement("p");
+  statusNode.className = "form-status";
+  statusNode.setAttribute("aria-live", "polite");
+  form.appendChild(statusNode);
+
+  let isSubmitting = false;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
+    const formData = new FormData(form);
+    const payload = {
+      company: String(formData.get("company") ?? ""),
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      topic: String(formData.get("topic") ?? ""),
+      message: String(formData.get("message") ?? ""),
+    };
+
+    isSubmitting = true;
+    submitButton.disabled = true;
+    statusNode.classList.remove("is-success", "is-error");
+    statusNode.textContent = "送信中...";
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const data = (await response.json().catch(() => null));
+        const message = data && typeof data.message === "string"
+          ? data.message
+          : "送信に失敗しました。時間を置いて再度お試しください。";
+        throw new Error(message);
+      }
+
+      form.reset();
+      statusNode.classList.add("is-success");
+      statusNode.textContent = "送信が完了しました。ありがとうございます。";
+    } catch (error) {
+      statusNode.classList.add("is-error");
+      statusNode.textContent = error instanceof Error
+        ? error.message
+        : "送信に失敗しました。時間を置いて再度お試しください。";
+    } finally {
+      isSubmitting = false;
+      submitButton.disabled = false;
+    }
+  });
 });

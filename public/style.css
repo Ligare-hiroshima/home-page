@@ -219,7 +219,7 @@ body.is-overlay-light .page-overlay {
 .hero-heading {
   margin: 0;
   font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
-  font-size: clamp(2rem, 4.45vw, 4rem);
+  font-size: clamp(4rem, 9.45vw, 7rem);
   font-weight: 800;
   line-height: 1.25;
   letter-spacing: 0.03em;
@@ -578,6 +578,50 @@ h2::after {
   border: 2px solid transparent;
   box-shadow: 0 8px 20px rgba(96, 95, 95, 0.08);
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card[data-href] {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card[data-href] > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card[data-href]::before,
+.card[data-href]::after {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.card[data-href]::before {
+  content: "";
+  background: rgba(0, 0, 0, 0.22);
+  z-index: 2;
+}
+
+.card[data-href]::after {
+  content: "詳細を見る";
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  z-index: 3;
+}
+
+.card[data-href]:hover::before,
+.card[data-href]:hover::after,
+.card[data-href]:focus-within::before,
+.card[data-href]:focus-within::after {
+  opacity: 1;
 }
 
 .card:hover,
@@ -1072,6 +1116,10 @@ h2::after {
   text-decoration: none;
 }
 
+.policy-back-link {
+  margin-top: 4.4rem;
+}
+
 .contact-form {
   width: min(100%, 920px);
   margin: 0 auto;
@@ -1080,6 +1128,56 @@ h2::after {
   background: rgba(255, 255, 255, 0.72);
   border: 2px solid transparent;
   box-shadow: 0 8px 20px rgba(96, 95, 95, 0.08);
+}
+
+.policy-sheet {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.78);
+  border: 2px solid transparent;
+  box-shadow: 0 8px 20px rgba(96, 95, 95, 0.08);
+}
+
+.policy-sheet h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  color: #1e2f45;
+}
+
+.policy-sheet p {
+  margin: 0.6rem 0 0;
+}
+
+.policy-item + .policy-item {
+  margin-top: 1.1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(169, 199, 232, 0.45);
+}
+
+.policy-item h2 {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  border: 0;
+  display: block;
+  font-size: clamp(1.02rem, 1.8vw, 1.2rem);
+  text-align: left;
+  letter-spacing: 0.02em;
+}
+
+.policy-item h2::after {
+  content: none;
+}
+
+.policy-sheet ul {
+  margin: 0.55rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.policy-sheet li + li {
+  margin-top: 0.28rem;
 }
 
 .form-section .container {
@@ -1142,6 +1240,26 @@ h2::after {
   color: #16314b;
 }
 
+.form-submit:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.form-status {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2f4c67;
+}
+
+.form-status.is-success {
+  color: #0f6b39;
+}
+
+.form-status.is-error {
+  color: #b42318;
+}
+
 .final-visual-zone {
   width: min(var(--container), calc(100% - 2.4rem));
   margin: 0 auto;
@@ -1154,9 +1272,61 @@ h2::after {
 }
 
 .footer {
-  padding: 5rem 1.2rem 5rem;
+  padding: 1rem 1rem 5rem;
   text-align: center;
-  background: rgba(230, 230, 223, 0.7);
+  background: #0f335a;
+  color: #ffffff;
+  font-family: "Bodoni 72", "Didot", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", serif;
+}
+
+.footer-logo {
+  display: block;
+  width: clamp(140px, 20vw, 220px);
+  height: auto;
+  margin: 0 auto 1.2rem;
+}
+
+.footer-title {
+  margin: 2rem 0 2rem;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+}
+
+.footer small {
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 1.2rem;
+  margin-bottom: 0.9rem;
+}
+
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 0;
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 0;
+  background: transparent;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-nav a:hover,
+.footer-nav a:focus-visible {
+  background: transparent;
+  color: #f1f3f4;
+  transform: translateY(-1px);
 }
 
 @media (max-width: 900px) {
@@ -1386,6 +1556,15 @@ h2::after {
     padding: 1rem;
   }
 
+  .policy-back-link {
+    margin-top: 3.8rem;
+  }
+
+  .policy-sheet {
+    margin-top: 0.6rem;
+    padding: 1rem;
+  }
+
   .form-submit {
     margin-top: 0.9rem;
     padding: 0.5rem 0.9rem;
@@ -1403,9 +1582,71 @@ h2::after {
 
 
   .footer {
-    padding: 1.4rem 1.2rem 1.6rem;
+    padding: 0.2rem 0 1.4rem;
     text-align: center;
-    background: rgba(230, 230, 223, 0.7);
+    background: #0f335a;
+    color: #ffffff;
+  }
+
+  .footer-logo {
+    width: clamp(150px, 52vw, 220px);
+    margin: 0 auto 1rem;
+  }
+
+  .footer-title {
+  margin: 1.4rem 0 2rem;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  }
+
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .footer-nav a {
+    padding: 1.15rem 0.6rem;
+    border-radius: 0;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    background: transparent;
+    color: #ffffff;
+    font-size: 1.02rem;
+    font-weight: 700;
+    text-align: center;
+    transform: none;
+  }
+
+  .footer-nav a:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .footer-nav a:nth-child(-n + 2) {
+    border-top: 0;
+  }
+
+  .footer-nav a:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    border-right: 0;
+  }
+
+  .footer-nav a:hover,
+  .footer-nav a:focus-visible {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+
+  .footer small {
+    display: block;
+    margin-top: 0.95rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.74rem;
   }
 
   .page-background {
