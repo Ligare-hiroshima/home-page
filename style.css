@@ -3,6 +3,9 @@
   --bg-alt: #efefe9;
   --text: #242424;
   --container: 1080px;
+  --hero-bg-image: none;
+  --hero-bg-position: center;
+  --hero-bg-size: cover;
 }
 
 * {
@@ -147,23 +150,25 @@ body.is-overlay-light .page-overlay {
 .hero {
   position: relative;
   width: 100%;
-  height: 100svh;
-  min-height: 85svh;
-  padding: 2rem;
+  min-height: max(100svh, 640px);
+  padding: 7rem 1.2rem 4.2rem;
   display: flex;
-  align-items: flex-end;
-  color: #fff;
+  align-items: center;
+  color: #0c0b0b;
   background-image: var(--hero-bg-image);
-  background-size: cover;
-  background-position: center;
+  background-position: var(--hero-bg-position);
+  background-size: var(--hero-bg-size);
   background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(243, 239, 239, 0.45);
+  background:
+    radial-gradient(circle at 10% 14%, rgba(255, 255, 255, 0.2), transparent 45%),
+    radial-gradient(circle at 86% 78%, rgba(123, 234, 238, 0.25), transparent 38%);
   z-index: 0;
 }
 
@@ -191,75 +196,116 @@ body.is-overlay-light .page-overlay {
   position: relative;
   z-index: 2;
   width: 100%;
-  height: 100%;
-  max-width: 100%;
-  padding: 3rem 3rem 20rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 0.6rem;
 }
 
 .hero-message {
   display: grid;
-  gap: 0.35rem;
-  width: min(96vw, 1100px);
-  text-align: center;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: clamp(1.8rem, 5vw, 5rem);
+  width: 100%;
+  text-align: left;
+  align-items: center;
 }
 
-.hero-line {
+.hero-copy {
+  min-width: 0;
+  max-width: 670px;
+  padding-right: 0.6rem;
+}
+
+.hero-heading {
   margin: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-  gap: 5em;
-  white-space: nowrap;
-  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-weight: 900;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  color: #1b2f72;
-}
-
-.hero-word {
-  display: inline-block;
-  font-size: clamp(1.5rem, 4.6vw, 5rem);
-  opacity: 0;
-  transform: translateY(14px) scale(0.96);
-  filter: blur(6px);
-  animation: heroWordIn 0.62s cubic-bezier(0.2, 0.62, 0.28, 1) forwards;
-  will-change: opacity, transform, filter;
-}
-
-.hero-word:nth-child(1) {
-  animation-delay: 0.2s;
-}
-
-.hero-word:nth-child(2) {
-  animation-delay: 0.65s;
-}
-
-.hero-word:nth-child(3) {
-  animation-delay: 1s;
-}
-
-.hero-word:nth-child(4) {
-  animation-delay: 1.45s;
-}
-
-.hero-line-final {
-  margin-top: 0.15rem;
-  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-  font-size: clamp(1.85rem, 5.2vw, 3.7rem);
+  font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  font-size: clamp(2rem, 4.45vw, 4rem);
   font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  color: #033c5d;
+  text-wrap: balance;
+}
+
+.hero-subcopy {
+  margin: 1rem 0 0;
+  font-size: clamp(1rem, 1.55vw, 1.3rem);
+  line-height: 1.7;
   letter-spacing: 0.08em;
-  color: #111111;
+  color: rgba(235, 248, 255, 0.9);
+}
+
+.hero-connector {
+  width: min(100%, 420px);
+  margin: 1.75rem 0 0;
   opacity: 0;
-  transform: translateY(16px) scale(0.97);
-  filter: blur(5px);
-  animation: heroFinalIn 0.7s cubic-bezier(0.2, 0.62, 0.28, 1) forwards;
+  animation: heroConnectorIn 0.5s ease forwards;
+  animation-delay: 0.55s;
+}
+
+.hero-connector svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-logo-draw {
+  width: min(100%, 430px);
+  justify-self: end;
+  align-self: center;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+.hero-logo-draw svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Draw the mural logo with a 3s stroke-dash animation */
+.hero-logo-draw-path {
+  fill: none;
+  stroke: url(#hero-logo-draw-grad);
+  stroke-width: 6.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 4px 12px rgba(8, 43, 116, 0.3));
+  stroke-dasharray: var(--hero-logo-path-length, 1600);
+  stroke-dashoffset: var(--hero-logo-path-length, 1600);
+}
+
+.hero-logo-draw.is-ready .hero-logo-draw-path {
+  animation: heroLogoDraw 20s ease forwards;
+}
+
+.hero-connector-line {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: heroConnectorLine 4s ease forwards;
   animation-delay: 2s;
 }
+
+.hero-node {
+  fill: #000000;
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: heroNodeIn 0.34s ease-out forwards;
+}
+
+.hero-node.node-1 { animation-delay: 0.8s; }
+.hero-node.node-2 { animation-delay: 0.96s; }
+.hero-node.node-3 { animation-delay: 1.12s; }
+.hero-node.node-4 { animation-delay: 1.28s; }
+.hero-node.node-5 { animation-delay: 1.44s; }
 
 @keyframes heroWordIn {
   from {
@@ -284,6 +330,44 @@ body.is-overlay-light .page-overlay {
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+  }
+}
+
+@keyframes heroConnectorIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroConnectorLine {
+  from {
+    stroke-dashoffset: 700;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes heroNodeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroLogoDraw {
+  from {
+    stroke-dashoffset: var(--hero-logo-path-length, 1600);
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
@@ -326,6 +410,19 @@ body.is-overlay-light .page-overlay {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-connector,
+  .hero-connector-line,
+  .hero-node {
+    animation: none;
+    opacity: 1;
+  }
+
+  .hero-logo-draw-path {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
   .hero-message {
     gap: 0.45rem;
   }
@@ -962,34 +1059,42 @@ h2::after {
   }
 
   .hero {
-    padding: 1rem;
-    height: 70svh;
-    min-height: 70svh;
-    background-position: center 30%;
+    min-height: 78svh;
+    padding: 6.4rem 1rem 3rem;
   }
 
-  .hero h1 {
-  font-size: clamp(0.7rem, 4.5vw, 2.1rem);
-  line-height: 1.2;
-}
-
-
   .hero-content {
-    padding: 1rem 1rem 5rem;
+    padding: 0;
   }
 
   .hero-message {
-    gap: 0.5rem;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 
-  .hero-line {
-    line-height: 1.3;
-    gap: 0.28em;
+  .hero-copy {
+    max-width: 100%;
+    padding-right: 0;
+    text-align: center;
   }
 
-  .hero-line-final {
-    margin-top: 0.18rem;
-    font-size: clamp(1.45rem, 8.4vw, 2.4rem);
+  .hero-heading {
+    font-size: clamp(1.95rem, 8.8vw, 3rem);
+  }
+
+  .hero-subcopy {
+    margin-top: 0.75rem;
+    font-size: clamp(0.94rem, 4vw, 1.12rem);
+  }
+
+  .hero-connector {
+    width: min(92vw, 360px);
+    margin: 0.95rem auto 0;
+  }
+
+  .hero-logo-draw {
+    width: min(70vw, 320px);
+    justify-self: center;
   }
 
   h2 {
@@ -1119,6 +1224,12 @@ h2::after {
     padding: 1rem;
   }
 
+  .form-submit {
+    margin-top: 0.9rem;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.92rem;
+  }
+
   #contact + .final-visual-zone {
     margin-top: 0;
   }
@@ -1174,6 +1285,9 @@ h2::after {
     font-size: 1.05rem;
   }
 
+    .hero-content {
+    padding: 1rem 1rem 10rem;
+  }
   .member-card p {
     font-size: 0.92rem;
   }

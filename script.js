@@ -75,6 +75,26 @@ memberCards.forEach((card) => {
   });
 });
 
+// Initialize mural logo draw animation by computing path length once.
+const initHeroLogoDraw = () => {
+  const logoWrap = document.querySelector(".hero-logo-draw");
+  const logoPath = document.querySelector(".hero-logo-draw-path");
+  if (!(logoWrap instanceof HTMLElement) || !(logoPath instanceof SVGPathElement)) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const pathLength = logoPath.getTotalLength();
+  logoPath.style.setProperty("--hero-logo-path-length", `${pathLength}`);
+  logoPath.style.strokeDasharray = `${pathLength}`;
+  logoPath.style.strokeDashoffset = `${pathLength}`;
+
+  window.requestAnimationFrame(() => {
+    logoWrap.classList.add("is-ready");
+  });
+};
+
+initHeroLogoDraw();
+
 const scrollRevealTargets = document.querySelectorAll(
   ".section h2, .section .text, .activity-list li, .card, .works-group, .member-card, .contact-link"
 );
