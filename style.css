@@ -379,7 +379,7 @@ body.is-overlay-light .page-overlay {
     fill-opacity: 0;
   }
   to {
-    fill-opacity: 0.62;
+    fill-opacity: 0.85;
   }
 }
 
@@ -402,7 +402,7 @@ body.is-overlay-light .page-overlay {
 }
 
 .section {
-  padding: clamp(4rem, 8vw, 7rem) 1.2rem;
+  padding: clamp(2.6rem, 5vw, 4.5rem) 1.2rem;
   background: transparent;
 }
 
@@ -430,7 +430,7 @@ body.is-overlay-light .page-overlay {
   }
 
   .hero-logo-draw-path {
-    fill-opacity: 0.62;
+    fill-opacity: 0.95;
     stroke-dasharray: none;
     stroke-dashoffset: 0;
     animation: none;
@@ -476,45 +476,60 @@ body.is-overlay-light .page-overlay {
 }
 
 h2 {
-  margin: 0 0 1.5rem;
+  margin: 0 auto 1.8rem;
   font-size: clamp(1.8rem, 4vw, 2.5rem);
   letter-spacing: 0.03em;
   text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem;
+  gap: 0;
+  width: fit-content;
 }
 
-h2::before,
-h2::after {
-  content: "";
-  font-size: 0.8em;
-  color: #000000;
-  opacity: 0.9;
-}
-
-.section h2 {
+.h2-en {
+  display: block;
+  line-height: 1.1;
   position: relative;
+  z-index: 0;
+}
+
+.h2-en::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.1em;
+  height: 8px;
+  background: #a9c7e8;
+  z-index: -1;
+}
+
+.h2-ja {
+  display: block;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  color: #29465f;
+}
+
+h2::before {
+  content: none;
+}
+
+h2::after {
+  content: none;
+}
+
+#activity h2 {
   display: flex;
   width: fit-content;
   margin: 0 auto 2rem;
-  padding-bottom: 0;
   justify-content: center;
 }
 
-.section h2::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 0.22em;
-  transform: translateX(-50%);
-  width: min(220px, 56vw);
-  height: 11px;
-  border-radius: 999px;
-  background: #a9c7e8;
-  opacity: 1;
-}
 
 .text {
   margin: 0;
@@ -731,8 +746,6 @@ h2::after {
 
 .work-card[data-href] {
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
 }
 
 .activity-list li:hover,
@@ -832,6 +845,14 @@ h2::after {
   background: #e7f0fb;
   transform: translateY(-1px);
   box-shadow: 0 8px 16px rgba(132, 168, 204, 0.25);
+}
+
+.activity-list .activity-content > button.activity-link {
+  display: none;
+}
+
+.work-card-body > button.activity-link {
+  display: none;
 }
 
 .activity-carousel {
@@ -945,22 +966,20 @@ h2::after {
   border-radius: 0;
 }
 
-.work-card[data-href]::before,
-.work-card[data-href]::after {
+.work-card-media::before,
+.work-card-media::after {
   position: absolute;
   inset: 0;
   opacity: 0;
   transition: opacity 0.2s ease;
-  pointer-events: none;
-  z-index: 2;
 }
 
-.work-card[data-href]::before {
+.work-card-media::before {
   content: "";
   background: rgba(0, 0, 0, 0.24);
 }
 
-.work-card[data-href]::after {
+.work-card-media::after {
   content: "詳細を見る";
   display: grid;
   place-items: center;
@@ -970,10 +989,10 @@ h2::after {
   letter-spacing: 0.04em;
 }
 
-.work-card[data-href]:hover::before,
-.work-card[data-href]:hover::after,
-.work-card[data-href]:focus-within::before,
-.work-card[data-href]:focus-within::after {
+.work-card[data-href]:hover .work-card-media::before,
+.work-card[data-href]:hover .work-card-media::after,
+.work-card[data-href]:focus-within .work-card-media::before,
+.work-card[data-href]:focus-within .work-card-media::after {
   opacity: 1;
 }
 
@@ -1233,6 +1252,10 @@ h2::after {
     font-size: clamp(1.55rem, 6.2vw, 2rem);
   }
 
+  .h2-ja {
+    font-size: clamp(0.88rem, 3.5vw, 1rem);
+  }
+
   h2::before,
   h2::after {
     font-size: 0.72em;
@@ -1273,6 +1296,14 @@ h2::after {
 
   .activity-content {
     display: block;
+  }
+
+  .activity-list .activity-content > button.activity-link {
+    display: inline-block;
+  }
+
+  .work-card-body > button.activity-link {
+    display: inline-block;
   }
 
   .activity-list h3 {
