@@ -133,7 +133,7 @@ const initHeroLogoDraw = () => {
 initHeroLogoDraw();
 
 const scrollRevealTargets = document.querySelectorAll(
-  ".section h2, .section .text, .activity-list li, .card, .works-group, .member-card, .contact-link"
+  ".section:not(#activity) h2, .section .text, .card, .works-group, .member-card, .contact-link"
 );
 if (scrollRevealTargets.length > 0) {
   scrollRevealTargets.forEach((element, index) => {

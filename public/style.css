@@ -166,9 +166,7 @@ body.is-overlay-light .page-overlay {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 10% 14%, rgba(255, 255, 255, 0.2), transparent 45%),
-    radial-gradient(circle at 86% 78%, rgba(123, 234, 238, 0.25), transparent 38%);
+
   z-index: 0;
 }
 
@@ -1671,6 +1669,11 @@ h2::after {
 }
 
 @media (max-width: 520px) {
+  #hero {
+    --hero-bg-size: 175%;
+    --hero-bg-position: center top;
+  }
+
   .member-card,
   .member-card-inner {
     min-height: clamp(410px, 48svh, 460px);
@@ -1688,10 +1691,31 @@ h2::after {
     font-size: 1.05rem;
   }
 
-    .hero-content {
-    padding: 1rem 1rem 10rem;
+  .hero-content {
+    padding: 1rem 1rem 1rem;
   }
   .member-card p {
     font-size: 0.92rem;
+  }
+}
+
+@media (max-width: 500px) {
+  #hero {
+    --hero-bg-position: center top;
+    --hero-bg-size: 180%;
+  }
+
+  .hero {
+    min-height: 68svh;
+    padding: 5.2rem 1rem 2rem;
+    align-items: flex-start;
+  }
+
+  .hero-content {
+    padding: 0.35rem 0.5rem 2.4rem;
+  }
+
+  .hero-message {
+    gap: 0.9rem;
   }
 }
