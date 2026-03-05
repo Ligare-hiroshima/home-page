@@ -30,6 +30,7 @@ export async function POST(request: Request) {
   const gmailUser = process.env.GMAIL_USER;
   const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
   const contactTo = process.env.CONTACT_TO ?? gmailUser;
+  const slackWebhookUrl = process.env.SLACK_WEBHOOK_URL;
 
   if (!gmailUser || !gmailAppPassword || !contactTo) {
     return NextResponse.json(
@@ -83,6 +84,17 @@ export async function POST(request: Request) {
     message,
   ].join("\n");
 
+  const slackText = [
+    "📩 *Ligare お問い合わせ通知*",
+    `送信日時: ${submittedAt}`,
+    `会社名: ${company || "(未入力)"}`,
+    `名前: ${name}`,
+    `メールアドレス: ${email}`,
+    `相談内容: ${topic}`,
+    "メッセージ:",
+    message,
+  ].join("\n");
+
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -100,9 +112,25 @@ export async function POST(request: Request) {
       text,
     });
 
+    if (slackWebhookUrl) {
+      const slackResponse = await fetch(slackWebhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          text: slackText,
+        }),
+      });
+
+      if (!slackResponse.ok) {
+        throw new Error(`Failed to send Slack notification: ${slackResponse.status}`);
+      }
+    }
+
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("Failed to send contact mail:", error);
+    console.error("Failed to process contact request:", error);
     return NextResponse.json(
       { message: "Failed to send message." },
       { status: 500 }

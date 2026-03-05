@@ -1520,13 +1520,14 @@ h2::after {
 
   .member-card,
   .member-card-inner {
-    min-height: clamp(420px, 60svh, 500px);
+    min-height: clamp(420px, 50svh, 500px);
   }
 
   .member-photo {
-    height: clamp(190px, 38vw, 280px);
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
   }
-
   .logo-layer {
     top: 0.8rem;
     left: 0.8rem;
@@ -1652,20 +1653,7 @@ h2::after {
 
 }
 
-@media (min-width: 901px) and (max-width: 1120px) {
-  .member-card,
-  .member-card-inner {
-    min-height: 550px;
-  }
 
-  .member-face {
-    padding: 1.3rem;
-  }
-
-  .member-card p {
-    font-size: 0.95rem;
-  }
-}
 
 @media (max-width: 520px) {
   #hero {
@@ -1675,7 +1663,7 @@ h2::after {
 
   .member-card,
   .member-card-inner {
-    min-height: clamp(410px, 48svh, 460px);
+    min-height: clamp(460px, 50svh, 560px);
   }
 
   .member-face {
@@ -1683,7 +1671,9 @@ h2::after {
   }
 
   .member-photo {
-    height: clamp(170px, 44vw, 220px);
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
   }
 
   .member-card h3 {
