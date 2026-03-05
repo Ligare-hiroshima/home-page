@@ -96,7 +96,15 @@ const setupClickableCards = (selector) => {
 
     card.addEventListener("click", (event) => {
       const target = event.target;
-      if (target instanceof Element && target.closest("a, button")) return;
+      if (target instanceof Element) {
+        if (target.closest("a")) return;
+        if (target.closest("button.activity-link")) {
+          event.preventDefault();
+          navigate();
+          return;
+        }
+        if (target.closest("button")) return;
+      }
       navigate();
     });
 
