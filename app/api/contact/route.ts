@@ -69,7 +69,15 @@ export async function POST(request: Request) {
     );
   }
 
-  const submittedAt = new Date().toISOString();
+  const submittedAt = new Intl.DateTimeFormat("ja-JP", {
+    timeZone: "Asia/Tokyo",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(new Date());
   const subject = `[Ligare] お問い合わせ: ${topic}`;
   const text = [
     "お問い合わせを受信しました。",

@@ -277,8 +277,8 @@ body.is-overlay-light .page-overlay {
 
 .hero-logo-draw.is-ready .hero-logo-draw-path {
   animation:
-    heroLogoDraw 7s ease forwards,
-    heroLogoFill 0.7s ease forwards 2s;
+    heroLogoDraw 5s ease forwards,
+    heroLogoFill 0.7s ease forwards 1s;
 }
 
 .hero-connector-line {
