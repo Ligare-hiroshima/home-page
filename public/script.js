@@ -268,18 +268,26 @@ const initCarousel = ({
     });
 
     let touchStartX = 0;
-    let touchEndX = 0;
-    const SWIPE_THRESHOLD = 50;
+    let touchMoveX = 0;
+    let isSwiping = false;
+    const SWIPE_THRESHOLD = 40;
 
-    track.addEventListener("touchstart", (e) => {
+    carousel.addEventListener("touchstart", (e) => {
       if (!isEnabled()) return;
-      touchStartX = e.changedTouches[0].screenX;
+      touchStartX = e.touches[0].clientX;
+      touchMoveX = touchStartX;
+      isSwiping = true;
     }, { passive: true });
 
-    track.addEventListener("touchend", (e) => {
-      if (!isEnabled()) return;
-      touchEndX = e.changedTouches[0].screenX;
-      const diff = touchStartX - touchEndX;
+    carousel.addEventListener("touchmove", (e) => {
+      if (!isEnabled() || !isSwiping) return;
+      touchMoveX = e.touches[0].clientX;
+    }, { passive: true });
+
+    carousel.addEventListener("touchend", () => {
+      if (!isEnabled() || !isSwiping) return;
+      isSwiping = false;
+      const diff = touchStartX - touchMoveX;
       if (Math.abs(diff) < SWIPE_THRESHOLD) return;
       if (diff > 0) {
         index = loop
@@ -291,7 +299,7 @@ const initCarousel = ({
           : Math.max(0, index - 1);
       }
       sync();
-    }, { passive: true });
+    });
 
     if (autoAdvanceMs > 0) {
       window.setInterval(() => {
