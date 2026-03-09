@@ -267,6 +267,32 @@ const initCarousel = ({
       sync();
     });
 
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const SWIPE_THRESHOLD = 50;
+
+    track.addEventListener("touchstart", (e) => {
+      if (!isEnabled()) return;
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener("touchend", (e) => {
+      if (!isEnabled()) return;
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) < SWIPE_THRESHOLD) return;
+      if (diff > 0) {
+        index = loop
+          ? (index + 1) % slides.length
+          : Math.min(slides.length - 1, index + 1);
+      } else {
+        index = loop
+          ? (index - 1 + slides.length) % slides.length
+          : Math.max(0, index - 1);
+      }
+      sync();
+    }, { passive: true });
+
     if (autoAdvanceMs > 0) {
       window.setInterval(() => {
         if (!isEnabled()) return;
